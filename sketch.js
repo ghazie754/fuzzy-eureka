@@ -1,19 +1,18 @@
 let Shaderfile;
 let frameCount = 60;
+let c = frameCount % 255;
 let position = 0;
-let img;
-let slider;
+let Canvas;
+
 function preload() {
   Shaderfile = loadShader("Shaders/shader.vert", "Shaders/shader.frag");
 }
 function setup() {
-  let img = createCanvas(windowWidth, windowHeight, WEBGL);
-  noStroke();
+  Canvas = createCanvas(windowWidth, windowHeight, WEBGL);
   Shaderfile.setUniform("resolution", [width, height]);
+  noStroke();
 }
 function draw() {
-  // shader() sets the active shader with our shader
-
   let mx = map(mouseX, 0, width, 0, 1);
   let my = map(mouseY, 0, height, 0, 1);
 
@@ -21,9 +20,9 @@ function draw() {
 
   Shaderfile.setUniform("time", frameCount * 0.1);
   Shaderfile.setUniform("mouse", [mx, my]);
-
+  // shader() sets the active shader with our shader
   shader(Shaderfile);
-  clear();
+
   // rect gives us some geometry on the screen
   rect(0, 0, width, height);
 }
@@ -39,5 +38,15 @@ function mousePressed() {
   }
 }
 function doubleClicked() {
-  saveCanvas(img, "jpg");
+  saveCanvas(Canvas, "jpg");
+}
+function keyPressed() {
+  if (key === "s") {
+    saveGif("mySketch", 5);
+  }
+  function keyPressed() {
+    if (key === "r") {
+      clear();
+    }
+  }
 }
