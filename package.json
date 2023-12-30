@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "9.1.0",
+    "husky": "^8.0.3",
+    "prettier": "3.1.1"
+  },
+  "name": "fuzzy-eureka",
+  "description": "",
+  "version": "1.0.0",
+  "main": "sketch.js",
+  "author": "",
+  "license": "ISC"
+}
